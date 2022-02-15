@@ -1,0 +1,22 @@
+{
+  "name": "terceraentragabackend",
+  "version": "1.0.0",
+  "description": "\"tercera entrega Ecommerce Backend\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoEstela/Entrega3-BackEnd.git"
+  },
+  "author": "Diego Estela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiegoEstela/Entrega3-BackEnd/issues"
+  },
+  "homepage": "https://github.com/DiegoEstela/Entrega3-BackEnd#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
