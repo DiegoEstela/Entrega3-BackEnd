@@ -1,13 +1,13 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
-const { userModel } = require("./models/ModelUser");
+const bcrypt = require("bcrypt");
+const { userModel } = require("../config/ModelUser");
 
 //SING IN
 passport.use(
   "local-login",
-  new LocalStrategy((username, password, done) => {
-    userModel.findOne({ username: username }, (err, user) => {
+  new LocalStrategy(async (username, password, done) => {
+    await userModel.findOne({ username: username }, (err, user) => {
       if (err) {
         return done(err);
       }
@@ -24,28 +24,14 @@ passport.use(
   })
 );
 
-app.use(
-  session({
-    store: mongoStore.create({
-      mongoUrl: process.env.MONGO_DB,
-    }),
-    secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
-    resave: true,
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 passport.use(
   "local-signup",
   new LocalStrategy(
     {
       passReqToCallback: true,
     },
-    (req, username, password, done) => {
-      userModel.findOne({ username: username }, (err, user) => {
+    async (req, username, password, done) => {
+      await userModel.findOne({ username: username }, (err, user) => {
         if (err) {
           console.log(`Error in signup ${err}`);
         }
@@ -81,3 +67,5 @@ passport.deserializeUser((id, done) => {
 function isValidPassword(user, password) {
   return bcrypt.compareSync(password, user.password);
 }
+
+module.exports = passport;
