@@ -11,6 +11,9 @@ app.use(express.static(__dirname + "/public"));
 // passport //
 const passport = require("./passport");
 dotenv.config();
+// rutes //
+// const products = require("./routes/products");
+// app.use("/api/productos", products);
 
 app.use(
   session({

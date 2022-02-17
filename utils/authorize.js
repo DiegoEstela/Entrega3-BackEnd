@@ -1,6 +1,9 @@
-module.exports = function authorize(req, res, next) {
+const auth = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+    next();
+    return;
   }
   res.redirect("/login");
 };
+
+module.exports = auth;

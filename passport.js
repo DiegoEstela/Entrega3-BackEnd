@@ -43,6 +43,12 @@ passport.use(
         const newUser = {
           username: username,
           password: bcrypt.hashSync(password, 10),
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          direccion: req.body.direccion,
+          edad: req.body.edad,
+          telefono: req.body.telefono,
+          foto: req.body.foto,
         };
 
         userModel.create(newUser, (err, user) => {
